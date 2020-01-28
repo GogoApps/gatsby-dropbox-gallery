@@ -1,3 +1,6 @@
+.idea
+.vscode
+
 # Logs
 logs
 *.log
@@ -41,7 +44,7 @@ typings/
 
 # Optional npm cache directory
 .npm
-.idea
+
 # Optional eslint cache
 .eslintcache
 

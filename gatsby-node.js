@@ -1,32 +1,28 @@
-/* eslint-disable */
 const path = require("path")
-
-const ProductTemplate = path.resolve("./src/templates/product-template.tsx")
+const PhotoTemplate = path.resolve("./src/templates/photo-template.tsx")
 
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions
-
-  const result = await graphql(`
-     {
-       allContentfulProduct {
-         edges {
-           node {
-             slug
-             id
-           }
-         }
-       }
-     }
-   `)
-
-  const products = result.data.allContentfulProduct.edges
-  products.forEach(({ node: product }) => {
-    createPage({
-      path: `/products/${product.slug}`,
-      component: ProductTemplate,
-      context: {
-        id: product.id
+  const dropboxFiles = await graphql(`
+    {
+      allDropboxNode {
+        edges {
+          node {
+            id,
+            name
+          }
+        }
       }
+    }
+  `)
+
+  dropboxFiles.data.allDropboxNode.edges.forEach(({ node }) => {
+    createPage({
+      path: `/photos/${node.name}`,
+      component: PhotoTemplate,
+      context: {
+        id: node.id,
+      },
     })
   })
 }

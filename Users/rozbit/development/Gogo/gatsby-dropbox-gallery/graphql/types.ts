@@ -1788,8 +1788,6 @@ export type QuerySiteArgs = {
   internal?: Maybe<InternalFilterInput>,
   port?: Maybe<IntQueryOperatorInput>,
   host?: Maybe<StringQueryOperatorInput>,
-  polyfill?: Maybe<BooleanQueryOperatorInput>,
-  pathPrefix?: Maybe<StringQueryOperatorInput>,
   buildTime?: Maybe<DateQueryOperatorInput>
 };
 
@@ -1812,8 +1810,6 @@ export type QuerySitePluginArgs = {
   version?: Maybe<StringQueryOperatorInput>,
   pluginOptions?: Maybe<SitePluginPluginOptionsFilterInput>,
   nodeAPIs?: Maybe<StringQueryOperatorInput>,
-  browserAPIs?: Maybe<StringQueryOperatorInput>,
-  ssrAPIs?: Maybe<StringQueryOperatorInput>,
   pluginFilepath?: Maybe<StringQueryOperatorInput>,
   packageJson?: Maybe<SitePluginPackageJsonFilterInput>
 };
@@ -1832,12 +1828,11 @@ export type QuerySitePageArgs = {
   parent?: Maybe<NodeFilterInput>,
   children?: Maybe<NodeFilterListInput>,
   internal?: Maybe<InternalFilterInput>,
-  path?: Maybe<StringQueryOperatorInput>,
   internalComponentName?: Maybe<StringQueryOperatorInput>,
+  path?: Maybe<StringQueryOperatorInput>,
   component?: Maybe<StringQueryOperatorInput>,
   componentChunkName?: Maybe<StringQueryOperatorInput>,
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>,
-  context?: Maybe<SitePageContextFilterInput>,
   pluginCreator?: Maybe<SitePluginFilterInput>,
   pluginCreatorId?: Maybe<StringQueryOperatorInput>,
   componentPath?: Maybe<StringQueryOperatorInput>
@@ -1858,8 +1853,6 @@ export type Site = Node & {
   internal: Internal,
   port?: Maybe<Scalars['Int']>,
   host?: Maybe<Scalars['String']>,
-  polyfill?: Maybe<Scalars['Boolean']>,
-  pathPrefix?: Maybe<Scalars['String']>,
   buildTime?: Maybe<Scalars['Date']>,
 };
 
@@ -1987,8 +1980,6 @@ export type SiteFieldsEnum =
   'internal___type' |
   'port' |
   'host' |
-  'polyfill' |
-  'pathPrefix' |
   'buildTime';
 
 export type SiteFilterInput = {
@@ -1998,8 +1989,6 @@ export type SiteFilterInput = {
   internal?: Maybe<InternalFilterInput>,
   port?: Maybe<IntQueryOperatorInput>,
   host?: Maybe<StringQueryOperatorInput>,
-  polyfill?: Maybe<BooleanQueryOperatorInput>,
-  pathPrefix?: Maybe<StringQueryOperatorInput>,
   buildTime?: Maybe<DateQueryOperatorInput>,
 };
 
@@ -2017,12 +2006,11 @@ export type SitePage = Node & {
   parent?: Maybe<Node>,
   children: Array<Node>,
   internal: Internal,
-  path?: Maybe<Scalars['String']>,
   internalComponentName?: Maybe<Scalars['String']>,
+  path?: Maybe<Scalars['String']>,
   component?: Maybe<Scalars['String']>,
   componentChunkName?: Maybe<Scalars['String']>,
   isCreatedByStatefulCreatePages?: Maybe<Scalars['Boolean']>,
-  context?: Maybe<SitePageContext>,
   pluginCreator?: Maybe<SitePlugin>,
   pluginCreatorId?: Maybe<Scalars['String']>,
   componentPath?: Maybe<Scalars['String']>,
@@ -2047,14 +2035,6 @@ export type SitePageConnectionGroupArgs = {
   skip?: Maybe<Scalars['Int']>,
   limit?: Maybe<Scalars['Int']>,
   field: SitePageFieldsEnum
-};
-
-export type SitePageContext = {
-  id?: Maybe<Scalars['String']>,
-};
-
-export type SitePageContextFilterInput = {
-  id?: Maybe<StringQueryOperatorInput>,
 };
 
 export type SitePageEdge = {
@@ -2150,12 +2130,11 @@ export type SitePageFieldsEnum =
   'internal___mediaType' |
   'internal___owner' |
   'internal___type' |
-  'path' |
   'internalComponentName' |
+  'path' |
   'component' |
   'componentChunkName' |
   'isCreatedByStatefulCreatePages' |
-  'context___id' |
   'pluginCreator___id' |
   'pluginCreator___parent___id' |
   'pluginCreator___parent___parent___id' |
@@ -2207,8 +2186,6 @@ export type SitePageFieldsEnum =
   'pluginCreator___pluginOptions___dest' |
   'pluginCreator___pluginOptions___pathCheck' |
   'pluginCreator___nodeAPIs' |
-  'pluginCreator___browserAPIs' |
-  'pluginCreator___ssrAPIs' |
   'pluginCreator___pluginFilepath' |
   'pluginCreator___packageJson___name' |
   'pluginCreator___packageJson___description' |
@@ -2234,12 +2211,11 @@ export type SitePageFilterInput = {
   parent?: Maybe<NodeFilterInput>,
   children?: Maybe<NodeFilterListInput>,
   internal?: Maybe<InternalFilterInput>,
-  path?: Maybe<StringQueryOperatorInput>,
   internalComponentName?: Maybe<StringQueryOperatorInput>,
+  path?: Maybe<StringQueryOperatorInput>,
   component?: Maybe<StringQueryOperatorInput>,
   componentChunkName?: Maybe<StringQueryOperatorInput>,
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>,
-  context?: Maybe<SitePageContextFilterInput>,
   pluginCreator?: Maybe<SitePluginFilterInput>,
   pluginCreatorId?: Maybe<StringQueryOperatorInput>,
   componentPath?: Maybe<StringQueryOperatorInput>,
@@ -2269,8 +2245,6 @@ export type SitePlugin = Node & {
   version?: Maybe<Scalars['String']>,
   pluginOptions?: Maybe<SitePluginPluginOptions>,
   nodeAPIs?: Maybe<Array<Maybe<Scalars['String']>>>,
-  browserAPIs?: Maybe<Array<Maybe<Scalars['String']>>>,
-  ssrAPIs?: Maybe<Array<Maybe<Scalars['String']>>>,
   pluginFilepath?: Maybe<Scalars['String']>,
   packageJson?: Maybe<SitePluginPackageJson>,
 };
@@ -2402,8 +2376,6 @@ export type SitePluginFieldsEnum =
   'pluginOptions___dest' |
   'pluginOptions___pathCheck' |
   'nodeAPIs' |
-  'browserAPIs' |
-  'ssrAPIs' |
   'pluginFilepath' |
   'packageJson___name' |
   'packageJson___description' |
@@ -2432,8 +2404,6 @@ export type SitePluginFilterInput = {
   version?: Maybe<StringQueryOperatorInput>,
   pluginOptions?: Maybe<SitePluginPluginOptionsFilterInput>,
   nodeAPIs?: Maybe<StringQueryOperatorInput>,
-  browserAPIs?: Maybe<StringQueryOperatorInput>,
-  ssrAPIs?: Maybe<StringQueryOperatorInput>,
   pluginFilepath?: Maybe<StringQueryOperatorInput>,
   packageJson?: Maybe<SitePluginPackageJsonFilterInput>,
 };
@@ -2562,24 +2532,10 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>,
 };
 
-export type PhotoThumbnailFragment = (
-  Pick<DropboxNode, 'id' | 'name'>
-  & { localFile: Maybe<{ sharp: Maybe<{ photo: Maybe<Pick<ImageSharpFixed, 'srcSet' | 'src'>> }> }> }
-);
-
-export type PhotoListFragment = { edges: Array<{ node: PhotoThumbnailFragment }> };
-
 export type PhotosPageQueryVariables = {};
 
 
-export type PhotosPageQuery = { allDropboxNode: PhotoListFragment };
-
-export type PhotoDetailsQueryVariables = {
-  id: Scalars['String']
-};
-
-
-export type PhotoDetailsQuery = { dropboxNode: Maybe<Pick<DropboxNode, 'id' | 'name'>> };
+export type PhotosPageQuery = { allDropboxNode: { edges: Array<{ node: Pick<DropboxNode, 'id' | 'name' | 'lastModified' | 'path'> }> } };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
