@@ -5,6 +5,6 @@ declare namespace NodeJS {
   // when using the `process.env` global
   export interface ProcessEnv {
     NODE_ENV: "development" | "production" | "test"
-    GATSBY_USE_MOCK: "true" | "false"
+    GATSBY_USE_MOCKS: "true" | "false"
   }
 }

@@ -24,7 +24,7 @@ export const createUsePageState = <M = typeof mocks>(mockedData: M) => <P extend
   const [state, setState] = useState<typeof mockedData[P]>(defaultValue)
   const decoratedSetState = useCallback(
     (newStateValue: NewStateValue<typeof mockedData[P]>) => {
-      process.env.GATSBY_USE_MOOCKS === "true" && mockedData[page]
+      process.env.GATSBY_USE_MOCKS === "true" && mockedData[page]
         ? setState(mockedData[page])
         : setState(newStateValue)
     },
