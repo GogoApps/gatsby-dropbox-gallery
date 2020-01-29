@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect } from "react"
-import { PhotoProvider } from "./Photos/photo-provider"
+import { PhotoProvider } from "./photos/photo-provider"
 
 export const RootElementWrapper: FunctionComponent = ({ children }) => {
   useEffect(

@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react"
 import { mocks } from "../mocks"
+import { Nullable } from "../types"
 
 type NewStateValue<S> = S | (() => S)
 
@@ -20,7 +21,9 @@ export const createUsePageState = <M = typeof mocks>(mockedData: M) => <P extend
   page: P,
   defaultValue: NewStateValue<typeof mockedData[P]>,
 ): [typeof mockedData[P], (newState: typeof mockedData[P]) => void] => {
-  // NOTE: could be useReducer as well
+  // NOTE: could be useReducer as well.
+  // TODO: this makes it a local state in a place where hook is called. It should be an actual
+  //  setter passed as a param or as another composition
   const [state, setState] = useState<typeof mockedData[P]>(defaultValue)
   const decoratedSetState = useCallback(
     (newStateValue: NewStateValue<typeof mockedData[P]>) => {

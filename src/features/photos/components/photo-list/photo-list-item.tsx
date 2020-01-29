@@ -26,7 +26,7 @@ export const query = graphql`
     name
     localFile {
       sharp: childImageSharp {
-        photo: fixed(height: 100, width: 100) {
+        thumbnail: fixed(height: 100, width: 100) {
           srcSet
           src
         }

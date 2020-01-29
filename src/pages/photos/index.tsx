@@ -1,15 +1,15 @@
 import React, { FunctionComponent } from "react"
 import { graphql } from "gatsby"
 import { PhotosPageQuery } from "../../../graphql/types"
-import { usePhotoData } from "./hooks/use-photo-data"
-import { Photos } from "./components/photos"
+import { usePhotoListData } from "../../features/photos/hooks/use-photo-list-data"
+import { Photos } from "../../features/photos/components/photos"
 
 export interface ProductsPageProps {
   data: PhotosPageQuery
 }
 
 export const ProductsPage: FunctionComponent<ProductsPageProps> = ({ data }) => {
-  usePhotoData(data)
+  usePhotoListData(data)
 
   return <Photos />
 }

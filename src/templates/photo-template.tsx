@@ -1,32 +1,29 @@
-import React, { FunctionComponent } from "react"
+import React, { FunctionComponent, useContext, useEffect } from "react"
 import { graphql } from "gatsby"
-import { PhotoDetailsQuery } from "../../graphql/types"
+import { PhotoQuery } from "../../graphql/types"
+import { Photo } from "../features/photos/components/photo"
+import { mapSourcePhotoToView } from "../features/photos/mappers/photo-mapper"
+import { PhotoContext } from "../providers/photos/photo-context"
+import { useSelectedPhotoData } from "../features/photos/hooks/use-selected-photo-data"
 
 export interface PhotoTemplateProps {
-  data?: PhotoDetailsQuery
-  name: string;
+  data: PhotoQuery
 }
 
-// TODO: I'm thinking about moviing this under the specific `page` as this would be the part of
-// specific domain and wouldn't make sense outside of it... And it's always nice to have some
-// "bounded contexts" clearly mapped to the file system :)
-// Also this would probably use components and queries/fragments strictly from Photos domain.
-export const PhotoTemplate: FunctionComponent<PhotoTemplateProps> = ({ data, name }) => {
-  console.log(data)
+// NOTE: This would probably use components and queries/fragments strictly from Photos domain.
+export const PhotoTemplate: FunctionComponent<PhotoTemplateProps> = ({ data }) => {
+  useSelectedPhotoData(data)
 
   return (
-    <div>
-      <h1>{name}</h1>
-    </div>
+    <Photo />
   )
 }
 
 // TODO: Use fragments here as well.
 export const query = graphql`
-  query PhotoDetails ($id: String!) {
+  query Photo ($id: String!) {
     dropboxNode(id: { eq: $id }) {
-      id,
-      name,
+      ...PhotoDetails
     }
   }
 `

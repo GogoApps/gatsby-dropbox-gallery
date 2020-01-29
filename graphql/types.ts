@@ -2564,22 +2564,27 @@ export type StringQueryOperatorInput = {
 
 export type PhotoThumbnailFragment = (
   Pick<DropboxNode, 'id' | 'name'>
-  & { localFile: Maybe<{ sharp: Maybe<{ photo: Maybe<Pick<ImageSharpFixed, 'srcSet' | 'src'>> }> }> }
+  & { localFile: Maybe<{ sharp: Maybe<{ thumbnail: Maybe<Pick<ImageSharpFixed, 'srcSet' | 'src'>> }> }> }
 );
 
 export type PhotoListFragment = { edges: Array<{ node: PhotoThumbnailFragment }> };
+
+export type PhotoDetailsFragment = (
+  Pick<DropboxNode, 'id' | 'name'>
+  & { localFile: Maybe<{ sharp: Maybe<{ photo: Maybe<Pick<ImageSharpFluid, 'srcSet'>> }> }> }
+);
 
 export type PhotosPageQueryVariables = {};
 
 
 export type PhotosPageQuery = { allDropboxNode: PhotoListFragment };
 
-export type PhotoDetailsQueryVariables = {
+export type PhotoQueryVariables = {
   id: Scalars['String']
 };
 
 
-export type PhotoDetailsQuery = { dropboxNode: Maybe<Pick<DropboxNode, 'id' | 'name'>> };
+export type PhotoQuery = { dropboxNode: Maybe<PhotoDetailsFragment> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

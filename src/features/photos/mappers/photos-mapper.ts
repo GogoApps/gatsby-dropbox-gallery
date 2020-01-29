@@ -1,19 +1,19 @@
 import { FluidObject } from "gatsby-image"
 import { PhotosPageQuery } from "../../../../graphql/types"
-import { Photo } from "../../../providers/Photos/types"
+import { PhotoThumbnail } from "../types"
 
-export const mapFromDropboxToView = (dropboxData?: PhotosPageQuery): Photo[] => {
-  if (!dropboxData) {
+export const mapSourcePhotosToView = (sourcePhotos?: PhotosPageQuery): PhotoThumbnail[] => {
+  if (!sourcePhotos) {
     return []
   }
 
-  return dropboxData.allDropboxNode.edges.reduce<Photo[]>(
+  return sourcePhotos.allDropboxNode.edges.reduce<PhotoThumbnail[]>(
     (mappedPhotos, { node }) => {
-      if (!node.localFile?.sharp?.photo) {
+      if (!node.localFile?.sharp?.thumbnail) {
         return mappedPhotos
       }
 
-      const photo = Object.entries(node.localFile.sharp.photo).reduce<FluidObject>(
+      const thumbnail = Object.entries(node.localFile.sharp.thumbnail).reduce<FluidObject>(
         (mappedPhoto, [ key, value ]) => {
           if (value === undefined) {
             return mappedPhoto
@@ -35,7 +35,7 @@ export const mapFromDropboxToView = (dropboxData?: PhotosPageQuery): Photo[] => 
       mappedPhotos.push({
         id: node.id,
         name: node.name || "",
-        photo,
+        thumbnail,
       })
 
       return mappedPhotos

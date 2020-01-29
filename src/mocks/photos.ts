@@ -1,11 +1,11 @@
-import { Photo } from "../providers/Photos/types"
+import { PhotoThumbnail } from "../features/photos/types"
 import { FluidObject } from "gatsby-image"
 
-export const photosMock: Photo[] = [
+export const photosMock: PhotoThumbnail[] = [
   {
     id: "1",
     name: "name 1",
-    photo: {
+    thumbnail: {
       aspectRatio: 1,
       src: "src",
       srcSet: "srcSet",
@@ -15,7 +15,7 @@ export const photosMock: Photo[] = [
   {
     id: "2",
     name: "name 2",
-    photo: {
+    thumbnail: {
       aspectRatio: 1,
       src: "src",
       srcSet: "srcSet",
