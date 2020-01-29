@@ -1,9 +1,7 @@
-import React, { FunctionComponent, useContext, useEffect } from "react"
+import React, { FunctionComponent } from "react"
 import { graphql } from "gatsby"
 import { PhotoQuery } from "../../graphql/types"
 import { Photo } from "../features/photos/components/photo"
-import { mapSourcePhotoToView } from "../features/photos/mappers/photo-mapper"
-import { PhotoContext } from "../providers/photos/photo-context"
 import { useSelectedPhotoData } from "../features/photos/hooks/use-selected-photo-data"
 
 export interface PhotoTemplateProps {
